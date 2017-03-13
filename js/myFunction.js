@@ -1,3 +1,5 @@
-/**
- * Created by John on 2017-03-12.
- */
+function add(x,y){
+return x+y;
+}
+
+console.dir(add);
