@@ -10,9 +10,10 @@ var createFormObject ={
         form.target = target;
         form.action = action;
     },
-    addHiddenValue:function(formName,value){
+    addHiddenValue:function(formName,value) {
         var hiddenInput = document.createElement("input");
         hiddenInput.type = 'hidden';
         hiddenInput.value = value;
         formName.appendChild(hiddenInput);
+    }
 };
