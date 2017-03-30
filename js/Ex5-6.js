@@ -1,12 +1,8 @@
-var value ="value1";
+var globalscope = 'global';
 
-function printValue(){
-    return value;
+function fscope(){
+    var lv ='test';
+    alert(globalscope);
 }
-
-function printFunc(func){
-    var value = "value2";
-    console.log(printValue());
-}
-
-printFunc(printValue());
+fscope();
+alert(lv);
