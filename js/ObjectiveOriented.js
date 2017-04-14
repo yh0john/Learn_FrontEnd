@@ -1,6 +1,7 @@
 /**
  * Created by John on 2017-04-12.
  */
+//1.클래스,메서드,생성자
 /*
 function Person(arg){
     this.name = arg;
@@ -59,4 +60,7 @@ Person.method('getName',function(){
     return this.name;
 });
 */
+
+//2.상속
+
 
