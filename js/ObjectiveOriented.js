@@ -62,5 +62,12 @@ Person.method('getName',function(){
 */
 
 //2.상속
+//(1)클래스 기반의 전통적인 상속 방식을 흉내내는 것
+//(2)객체의 프로토타입으로 상속을 구현
 
+function create_object(o){
+    function F(){}
+    F.prototype = o;
+    return new F();
+}
 
