@@ -59,7 +59,7 @@ Person.method('setName',function(value){
 Person.method('getName',function(){
     return this.name;
 });
-*/
+
 
 //2.상속
 //(1)클래스 기반의 전통적인 상속 방식을 흉내내는 것
@@ -71,3 +71,30 @@ function create_object(o){
     return new F();
 }
 
+*/
+
+var person = {
+    name:"zzoon",
+    getName:function(){
+        return this.name;
+    },
+    setName:function(arg){
+        this.name= arg;
+    }
+};
+
+function create_object(o){
+    function F(){}
+    F.prototype = o;
+    return new F();
+}
+
+function extend(obj,prop){
+    if(!prop){prop=obj;obj=this;}
+    for(var i in prop)obj[i]=prop[i];
+    return obj;
+}
+//+ extend 함수 추가
+var student  = create_object(person);
+student.setName("me");
+console.log(student.getName());
