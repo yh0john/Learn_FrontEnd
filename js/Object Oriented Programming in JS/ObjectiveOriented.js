@@ -71,7 +71,7 @@ function create_object(o){
     return new F();
 }
 
-*/
+
 
 var person = {
     name:"zzoon",
@@ -98,3 +98,37 @@ function extend(obj,prop){
 var student  = create_object(person);
 student.setName("me");
 console.log(student.getName());
+
+*/
+
+//클래스 기반의 상속 구현
+function Person(arg){
+    this.name = arg;
+}
+
+Person.prototype.setName = function(value){
+    this.name = value;
+};
+Person.prototype.getName = function (){
+    return this.name;
+};
+
+function Student(arg){}
+
+var you = new Person("iamhjoo");
+Student.prototype = you;
+
+var me = new Student("zzoon");
+me.setName("zzoon");// (A)
+console.log(me.getName());
+
+//위의 코드는 문제가 있다. 먼저 me 인스턴스를 생성할 때 부모 클래스인 Person 클래스를 호출하지 않는다.
+//(A)코드로 me 인스턴스를 생성할 때 인자로 zzoon을 넘겼으나 이를 반영하는 코드는 어디에도 없다.
+//즉 생성된 me 객체는 빈 객체이다.이렇게 부모의 생성자가 호출 되지 않으면 인스턴스의 초기화가 제대로
+//이루어 지지 않아 문제가 발생 할 수 있다.이를 해결하려면 Student 함수에 다음 코드를 추가하여 부모클래스의 생성자를
+//호출해야한다.
+/*추가 함수
+* function Student(arg){
+*   Person.applyt(this,arguments);
+*   //apply 찾아 볼 것
+* }*/
