@@ -99,7 +99,7 @@ var student  = create_object(person);
 student.setName("me");
 console.log(student.getName());
 
-*/
+
 
 //클래스 기반의 상속 구현
 function Person(arg){
@@ -129,6 +129,51 @@ console.log(me.getName());
 //호출해야한다.
 /*추가 함수
 * function Student(arg){
-*   Person.applyt(this,arguments);
+*   Person.apply(this,arguments);
 *   //apply 찾아 볼 것
-* }*/
+* }
+ */
+//Apply 함수 설명 - this를 특정 객체에 명시적으로 바인딩 할 때 사용.
+//위의 코드는 Person 객체의 this에 Student 객체를 바인딩 함.
+
+//부모클래스와 자식클래스가 너무 강하게 묶여있다. 서로 독립적인 인스턴스로 만들어보자.
+//두 클래스의 프로토타입 사이에 중개자를 만들어 해결해보자.
+function Person(arg){
+    this.name = arg;
+}
+
+Function.prototype.method = function(name,func){
+    this.prototype[name] = func;
+}
+Person.method("setName",function(value){
+   this.name = name;
+});
+Person.method("getName",function(){
+    return this.name;
+});
+function Student(arg){}
+
+function F(){}  //중개자 함수
+
+F.prototype = Person.prototype;
+Student.prototype = new F();
+Student.prototype.constructor = Student;
+Student.super = Person.prototype;
+
+var me = new Student();
+me.setName("zzoon");
+console.log(me.getName());
+
+//상속관계를 즉시 실행함수와 클로져로 최적화 시켜보았다.
+
+var inherit = function(parent,child){
+    var F = function(){};
+    return function(parent,child){
+      F.prototype = parent.prototype;
+      child.prototype = new F();
+      child.prototype.constructor = child;
+      child.super = parent.prototype;
+    };
+}
+
+//캡슐화 - 모듈 패턴의 활용
