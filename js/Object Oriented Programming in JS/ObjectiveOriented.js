@@ -176,4 +176,4 @@ var inherit = function(parent,child){
     };
 }
 
-//캡슐화 - 모듈 패턴의 활용
+//캡슐화 - 모듈 패턴의 활용용
