@@ -16,6 +16,7 @@ var fact = function () {
         if(typeof(cache[n])==='number'){
             return cache[n];
         }else{
+            console.log(cache);
             result = cache[n] = n*fact(n-1);
         }
 
@@ -25,5 +26,4 @@ var fact = function () {
     return func;
 }();
 
-console.log(fact(10));
 console.log(fact(5));
