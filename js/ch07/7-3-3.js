@@ -26,4 +26,3 @@ var fact = function () {
     return func;
 }();
 
-console.log(fact(5));
