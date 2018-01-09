@@ -26,4 +26,28 @@ var myObject = function(){
         }
     };
 }();
-console.log(myObject());
+
+
+var hello = function(){
+    var str = 'myworld';
+
+    return innerFunc = function(){
+        alert(str);
+    };
+}
+
+//클로저 for 반복문 이해하기
+//새로운 실행 컨텍스트를 생성해 i 값을 바로 참조 할 수 있게 한다.
+function countSeconds(howMany){
+    for(var i=1;i<=howMany;i++){
+        (function(curI){
+            setTimeout(function(){
+                console.log(curI);
+            },i*1000);
+        })(i);
+
+    }
+};
+
+
+countSeconds(3);
